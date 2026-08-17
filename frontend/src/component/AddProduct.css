@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100vh;
+    background-color: #f4f6f9;
+    overflow-x: hidden;
+}
+
+/* Main Outer Wrapper (right sidebar) */
+.ap-main-wrapper {
+    margin-left: 125px !important; /* Sidebar  */
+    width: calc(100% - 250px) !important; 
+    min-height: 100vh !important;
+    padding: 20px 40px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Main Card Box */
+.ap-card-box {
+    width: 100% !important;
+    max-width: 1100px !important;
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 22px 40px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+    margin: 0 auto !important;
+}
+
+/* Header Title */
+.ap-title {
+    text-align: center !important;
+    color: #2E7D32 !important;
+    font-size: 28px !important;
+    margin-bottom: 18px !important;
+    font-weight: 700 !important;
+}
+
+/* 3 Columns Layout Grid */
+.ap-form-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    column-gap: 35px !important;
+    row-gap: 14px !important;
+    width: 100% !important;
+}
+
+/* Form Field Section */
+.ap-field {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.ap-field label {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin-bottom: 4px !important;
+    color: #333333 !important;
+}
+
+/* Input Field Styling */
+.ap-field input,
+.ap-field select,
+.ap-field textarea {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 8px 12px !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 6px !important;
+    outline: none !important;
+    font-size: 14px !important;
+    background-color: #ffffff !important;
+    box-sizing: border-box !important;
+}
+
+.ap-field input:focus,
+.ap-field select:focus,
+.ap-field textarea:focus {
+    border-color: #2E7D32 !important;
+    box-shadow: 0 0 6px rgba(46, 125, 50, 0.2) !important;
+}
+
+.ap-field textarea {
+    height: 42px !important;
+    resize: none !important;
+}
+
+.ap-field input[type="file"] {
+    padding: 5px 8px !important;
+}
+
+/* Spans across 2 columns for Shop Address */
+.ap-span-2 {
+    grid-column: span 2 !important;
+}
+
+/* Button Row */
+.ap-btn-row {
+    grid-column: 1 / -1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin-top: 15px !important;
+}
+
+/* Add Product Button Style */
+.ap-submit-btn {
+    width: 180px !important;
+    padding: 10px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    background: #2E7D32 !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: 0.3s !important;
+}
+
+.ap-submit-btn:hover {
+    background: #1B5E20 !important;
+}
+
+/* Back to Home / Cancel Button Style */
+.ap-back-btn {
+    width: 180px !important;
+    padding: 10px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    background: #555555 !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: 0.3s !important;
+}
+
+.ap-back-btn:hover {
+    background: #333333 !important;
+}

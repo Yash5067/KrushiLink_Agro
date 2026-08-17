@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f7f4;
+}
+
+.home-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ================= Sidebar ================= */
+.sidebar {
+    width: 200px;
+    background: #0d5c2d;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 20px 10px;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.menu-link:hover {
+    background: #15803d;
+}
+
+/* ================= Main Content ================= */
+.main-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+}
+
+/* ================= Header ================= */
+.header {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-logo {
+    color: #0d5c2d;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.header-divider {
+    width: 1px;
+    height: 18px;
+    background-color: #cbd5e1;
+}
+
+.welcome-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.header-right-nav {
+    display: flex;
+    align-items: center;
+}
+
+.welcome-btn {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #1b5e20;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ================= Hero Banner ================= */
+.hero-banner {
+    margin: 25px;
+    border-radius: 16px;
+    padding: 50px 40px;
+    background-color: #eaf5ea;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-overlay-content {
+    max-width: 55%;
+}
+
+.hero-overlay-content h1 {
+    font-size: 32px;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.hero-overlay-content h1 span {
+    color: #0d5c2d;
+}
+
+.hero-overlay-content p {
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.stats-pills {
+    display: flex;
+    gap: 12px;
+}
+
+.pill-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 8px 14px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.pill-icon {
+    color: #0d5c2d;
+    font-size: 16px;
+}
+
+/* ================= Section Titles ================= */
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.section-title h2 {
+    color: #0d5c2d;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.title-line {
+    width: 50px;
+    height: 2px;
+    background-color: #0d5c2d;
+}
+
+.about {
+    text-align: center;
+    margin: 35px 25px 25px;
+}
+
+.about p {
+    color: #555;
+    font-size: 15px;
+}
+
+/* ================= Features Grid ================= */
+.features {
+    padding: 10px 25px 30px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 24px 16px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.icon-wrapper {
+    width: 56px;
+    height: 56px;
+    background: #e8f5e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.icon {
+    font-size: 24px;
+    color: #0d5c2d;
+}
+
+.card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0d5c2d;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.45;
+}
+
+/* ================= Footer ================= */
+.footer {
+    background: #064e23;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16px 30px;
+    gap: 20px;
+}
+
+.footer-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #0b7335;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.footer-icon {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.footer-text h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.footer-text p {
+    font-size: 12px;
+    color: #d1fae5;
+    margin: 2px 0 0 0;
+    padding: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.copyright {
+    background: #043819;
+    color: #a7f3d0;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+}

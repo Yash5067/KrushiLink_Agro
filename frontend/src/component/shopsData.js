@@ -1,0 +1,278 @@
+// src/shopsData.js
+export const shopsData = [
+    {
+        id: 1,
+        name: "KrushiLink - Kisan Agro Agency",
+        city: "Pune",
+        district: "Pune",
+        address: "Shop No. 12, Gate No. 4, Agriculture College Campus, Shivajinagar, Pune - 411005",
+        contact: "+91 98765 43210",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Hybrid & Vegetable)", "Fertilizers (NPK & Bio)", "Pesticides (Insecticides)"]
+    },
+    {
+        id: 2,
+        name: "KrushiLink - Kisan Agro Kendra",
+        city: "Kolhapur",
+        district: "Kolhapur",
+        address: "Plot No. 45, Near Central Bus Stand, Station Road, Kolhapur - 416001",
+        contact: "+91 98765 43211",
+        timing: "08:30 AM - 08:30 PM",
+        status: "Open All Days",
+        services: ["Seeds (Sugarcane & Grain)", "Fertilizers (Organic & Micronutrients)", "Pesticides (Fungicides)"]
+    },
+    {
+        id: 3,
+        name: "KrushiLink - Mauli Kisan Agro",
+        city: "Narayangaon",
+        district: "Pune",
+        address: "Near Otur Phata, Pune-Nashik Highway, Narayangaon, Junnar - 410504",
+        contact: "+91 98765 43212",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Tomato & Crop)", "Fertilizers (Water Soluble)", "Pesticides (Herbicides)"]
+    },
+    {
+        id: 4,
+        name: "KrushiLink - Shetkari Agro Seva Kendra",
+        city: "Osmanabad",
+        district: "Dharashiv",
+        address: "Shop No. 5, Market Yard Complex, Main Road, Osmanabad - 413501",
+        contact: "+91 98765 43213",
+        timing: "09:00 AM - 07:30 PM",
+        status: "Mon - Sat",
+        services: ["Seeds (Soybean & Pulses)", "Fertilizers (Bio-Fertilizers)", "Pesticides (Insecticides)"]
+    },
+    {
+        id: 5,
+        name: "KrushiLink - Baliraja Kisan Agro",
+        city: "Ahmednagar",
+        district: "Ahilya Nagar",
+        address: "Near New Market Yard, Nagar-Manmad Road, Ahmednagar - 414001",
+        contact: "+91 98765 43214",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Cotton & Hybrid)", "Fertilizers (Micronutrients)", "Pesticides (Fungicides)"]
+    },
+    {
+        id: 6,
+        name: "KrushiLink - Shivshakti Agro Kendra",
+        city: "Sangamner",
+        district: "Ahilya Nagar",
+        address: "Shop No. 8, Akole Road, Near Bus Stand, Sangamner - 422605",
+        contact: "+91 98765 43215",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Vegetable Seeds)", "Fertilizers (Liquid & Powder)", "Pesticides (Plant Protection)"]
+    },
+    {
+        id: 7,
+        name: "KrushiLink - Jai Kisan Agro Store",
+        city: "Shahapur",
+        district: "Thane",
+        address: "Opposite Gram Panchayat Office, Mumbai-Nashik Highway, Shahapur - 421601",
+        contact: "+91 98765 43216",
+        timing: "08:30 AM - 07:30 PM",
+        status: "Mon - Sat",
+        services: ["Seeds (Paddy & Rice)", "Fertilizers (Organic Manure)", "Pesticides (Herbicides)"]
+    },
+    {
+        id: 8,
+        name: "KrushiLink - Ambivli Agro Center",
+        city: "Ambivli",
+        district: "Thane",
+        address: "Station Road, Near Railway Flyover, Ambivli (East) - 421102",
+        contact: "+91 98765 43217",
+        timing: "09:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Plant & Flower)", "Fertilizers (NPK Mixture)", "Pesticides (General Crop Care)"]
+    },
+    {
+        id: 9,
+        name: "KrushiLink - Kalyan Krushi Seva Hub",
+        city: "Kalyan",
+        district: "Thane",
+        address: "Plot 14, APMC Market Yard, Kalyan (West) - 421301",
+        contact: "+91 98765 43218",
+        timing: "08:00 AM - 08:30 PM",
+        status: "Open All Days",
+        services: ["Seeds (Bulk Crop Seeds)", "Fertilizers (Chemical & Bio)", "Pesticides (Wholesale Pack)"]
+    },
+    {
+        id: 10,
+        name: "KrushiLink - Eastern Agro Hub",
+        city: "Kolkata",
+        district: "Kolkata",
+        address: "Building 18, Krushi Market Complex, Main Highway Road, Kolkata - 700001",
+        contact: "+91 98765 43219",
+        timing: "09:00 AM - 07:00 PM",
+        status: "Mon - Sat",
+        services: ["Seeds (Special Rice & Paddy)", "Fertilizers (Agro-Chemicals)", "Pesticides (Insect & Pest Care)"]
+    },
+    {
+        id: 11,
+        name: "KrushiLink - Godavari Agro Store",
+        city: "Nashik",
+        district: "Nashik",
+        address: "Shop No. 3, Dindori Road, Panchavati, Nashik - 422003",
+        contact: "+91 98765 43220",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Grape Vine Special)", "Fertilizers (Water Soluble NPK)", "Pesticides (Fungicides)"]
+    },
+    {
+        id: 12,
+        name: "KrushiLink - Baramati Kisan Mall",
+        city: "Baramati",
+        district: "Pune",
+        address: "Bhigwan Road, Near TC College Circle, Baramati - 413102",
+        contact: "+91 98765 43221",
+        timing: "08:00 AM - 08:30 PM",
+        status: "Open All Days",
+        services: ["Seeds (Fodder & Sugarcane)", "Fertilizers (Soil Booster)", "Pesticides (Weed Control)"]
+    },
+    {
+        id: 13,
+        name: "KrushiLink - Solapur Agro Center",
+        city: "Solapur",
+        district: "Solapur",
+        address: "Market Yard Gate No. 2, Old Pune Naka, Solapur - 413002",
+        contact: "+91 98765 43222",
+        timing: "08:30 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Jowar & Millet)", "Fertilizers (Fruit Care Special)", "Pesticides (Insecticides)"]
+    },
+    {
+        id: 14,
+        name: "KrushiLink - Satara Kisan Seva",
+        city: "Satara",
+        district: "Satara",
+        address: "Near Radhika Road, Opposite ST Stand, Satara - 415001",
+        contact: "+91 98765 43223",
+        timing: "08:00 AM - 07:30 PM",
+        status: "Mon - Sat",
+        services: ["Seeds (Ginger & Turmeric)", "Fertilizers (Bio-Pesticide Mix)", "Pesticides (Fungicides)"]
+    },
+    {
+        id: 15,
+        name: "KrushiLink - Karad Krushi Bhandar",
+        city: "Karad",
+        district: "Satara",
+        address: "Kolhapur-Naka, Pune-Bangalore Highway, Karad - 415110",
+        contact: "+91 98765 43224",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Quality Crop Seeds)", "Fertilizers (Micronutrient Powder)", "Pesticides (Crop Protector)"]
+    },
+    {
+        id: 16,
+        name: "KrushiLink - Sangli Agro Agency",
+        city: "Sangli",
+        district: "Sangli",
+        address: "APMC Market Yard, Madhavnagar Road, Sangli - 416416",
+        contact: "+91 98765 43225",
+        timing: "08:30 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Turmeric & Grain)", "Fertilizers (Grape Nutrients)", "Pesticides (Herbicides)"]
+    },
+    {
+        id: 17,
+        name: "KrushiLink - Latur Krushi Seva",
+        city: "Latur",
+        district: "Latur",
+        address: "Main Market Yard Road, Near Old Bus Stand, Latur - 413512",
+        contact: "+91 98765 43226",
+        timing: "08:30 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Soybean & Pulses)", "Fertilizers (Special Pulses Mix)", "Pesticides (Pest Control)"]
+    },
+    {
+        id: 18,
+        name: "KrushiLink - Nanded Kisan Point",
+        city: "Nanded",
+        district: "Nanded",
+        address: "Vazirabad Main Road, Near Railway Station, Nanded - 431601",
+        contact: "+91 98765 43227",
+        timing: "09:00 AM - 07:30 PM",
+        status: "Mon - Sat",
+        services: ["Seeds (Cotton Special)", "Fertilizers (Bio-Fertilizers)", "Pesticides (Insecticides)"]
+    },
+    {
+        id: 19,
+        name: "KrushiLink - Jalgaon Cotton Agro",
+        city: "Jalgaon",
+        district: "Jalgaon",
+        address: "Tower Road, Near Dana Bazar, Jalgaon - 425001",
+        contact: "+91 98765 43228",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Banana & Cotton)", "Fertilizers (NPK & Potash)", "Pesticides (Fungicides)"]
+    },
+    {
+        id: 20,
+        name: "KrushiLink - Sambhaji Nagar Agro Hub",
+        city: "Chhatrapati Sambhaji Nagar",
+        district: "Aurangabad",
+        address: "Jalna Road, Near CIDCO Bus Stand, Sambhaji Nagar - 431003",
+        contact: "+91 98765 43229",
+        timing: "08:30 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Maize & Cotton)", "Fertilizers (Soil Health)", "Pesticides (Insecticides)"]
+    },
+    {
+        id: 21,
+        name: "KrushiLink - Ratnagiri Agro Seva",
+        city: "Ratnagiri",
+        district: "Ratnagiri",
+        address: "Karwanchad Road, Near Shivaji Stadium, Ratnagiri - 415612",
+        contact: "+91 98765 43230",
+        timing: "08:30 AM - 07:30 PM",
+        status: "Mon - Sat",
+        services: ["Seeds (Mango & Cashew)", "Fertilizers (Organic Manure)", "Pesticides (Fungicides)"]
+    },
+    {
+        id: 22,
+        name: "KrushiLink - Panvel Kisan Seva",
+        city: "Panvel",
+        district: "Raigad",
+        address: "Plot 22, APMC Fruit Market, Panvel - 410206",
+        contact: "+91 98765 43231",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Paddy Seeds)", "Fertilizers (Chemical & Bio)", "Pesticides (Plant Protection)"]
+    },
+    {
+        id: 23,
+        name: "KrushiLink - Shirur Kisan Hub",
+        city: "Shirur",
+        district: "Pune",
+        address: "Pune-Nagar Highway, Near Baburao Phata, Shirur - 412210",
+        contact: "+91 98765 43232",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Onion & Vegetable)", "Fertilizers (Nutrient Supplements)", "Pesticides (Herbicides)"]
+    },
+    {
+        id: 24,
+        name: "KrushiLink - Manchar Agro Seva",
+        city: "Manchar",
+        district: "Pune",
+        address: "Pune-Nashik Road, Near Market Yard Gate, Manchar - 410503",
+        contact: "+91 98765 43233",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Potato & Vegetable)", "Fertilizers (Water Soluble)", "Pesticides (Fungicides)"]
+    },
+    {
+        id: 25,
+        name: "KrushiLink - Alephata Agro Agency",
+        city: "Alephata",
+        district: "Pune",
+        address: "Chuangat Chowk, Kalyan-Ahmednagar Highway, Alephata - 412411",
+        contact: "+91 98765 43234",
+        timing: "08:00 AM - 08:00 PM",
+        status: "Open All Days",
+        services: ["Seeds (Hybrid Vegetable)", "Fertilizers (Bio & Organic)", "Pesticides (Insecticides)"]
+    }
+];
