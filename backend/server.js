@@ -6,9 +6,10 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const transporter = require('./mailer');
 
-
 const multer = require("multer");
 const path = require("path");
+
+// एकमेव आणि अचूक ग्लोबल डेटाबेस कनेक्शन (Aiven Cloud Ssl Config)
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -19,52 +20,25 @@ const db = mysql.createConnection({
         rejectUnauthorized: false
     }
 }).promise();
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
-    ssl: {
-        rejectUnauthorized: false
-    }
-}).promise();
+
+console.log("database connected");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root@123",
-    database: "krushilink",
-    //   port: 3307
-}).promise();
-
-console.log("database connected");
-
 const storage = multer.diskStorage({
-
     destination: function (req, file, cb) {
-
         cb(null, "uploads");
-
     },
-
     filename: function (req, file, cb) {
-
         cb(null, Date.now() + path.extname(file.originalname));
-
     }
-
 });
 
 const upload = multer({
-
     storage: storage
-
 });
 
 app.post('/register', async (req, res) => {
@@ -95,8 +69,7 @@ app.post('/register', async (req, res) => {
             return res.status(400).json({ message: "User already exists" });
         }
 
-        // const hashedPassword = await bcrypt.hash(password, 16);
-        const hashedPassword = await bcrypt.hash(password, 10); // Use 10 rounds for better security
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const insertQuery = "INSERT INTO users (full_name, email, phone, password, role) VALUES (?, ?, ?, ?, ?)";
         const [result] = await db.query(insertQuery, [userName, email, phone, hashedPassword, roleToInsert]);
@@ -160,13 +133,10 @@ app.post("/login", async (req, res) => {
     }
 });
 
-
 app.get("/register", async (req, res) => {
     try {
         const [users] = await db.query("SELECT * FROM users");
-
         res.json(users);
-
     } catch (err) {
         res.status(500).json({
             message: err.message
@@ -174,14 +144,10 @@ app.get("/register", async (req, res) => {
     }
 });
 
-
-
 //================ Add Product =================//
 
 app.post("/add-product/:owner_id", upload.single("image"), async (req, res) => {
-
     try {
-
         const owner_id = req.params.owner_id;
 
         const {
@@ -197,11 +163,8 @@ app.post("/add-product/:owner_id", upload.single("image"), async (req, res) => {
             contact_number
         } = req.body;
 
-        // Uploaded Image
         const image = req.file ? req.file.filename : null;
-
-        const stock_status =
-            Number(quantity) > 0 ? "In Stock" : "Out of Stock";
+        const stock_status = Number(quantity) > 0 ? "In Stock" : "Out of Stock";
 
         const sql = `
         INSERT INTO products
@@ -224,7 +187,6 @@ app.post("/add-product/:owner_id", upload.single("image"), async (req, res) => {
         `;
 
         const [result] = await db.query(sql, [
-
             owner_id,
             product_name,
             category,
@@ -238,81 +200,26 @@ app.post("/add-product/:owner_id", upload.single("image"), async (req, res) => {
             address,
             contact_number,
             stock_status
-
         ]);
 
         res.status(201).json({
-
             success: true,
             message: "Product Added Successfully",
             product_id: result.insertId
-
         });
-
     }
-
     catch (err) {
-
         res.status(500).json({
-
             success: false,
             message: err.message
-
         });
-
     }
-
 });
+
 // ================= BULK UPLOAD API ROUTE =================
-// app.post("/bulk-upload", async (req, res) => {
-//     const { owner_id, category, products } = req.body;
-
-//     if (!owner_id || !category || !products || products.length === 0) {
-//         return res.status(400).json({ message: "Invalid payload or empty file." });
-//     }
-
-//     try {
-//         const values = products.map((item) => [
-//             owner_id,
-//             item.product_name || "",
-//             category,// Forces selected category (Fertilizer, Seed, or Pesticide)
-//             item.brand_name || "",
-//             item.description || "",
-//             item.price || 0,
-//             item.quantity || 0,
-//             item.unit || "",
-//             item.shop_name || "",
-//             item.address || "",
-//             item.contact_number || "",
-//             item.stock_status || "In Stock"
-//         ]);
-
-//         const sql = `
-//       INSERT INTO products 
-//       (owner_id, product_name, category, brand_name, description, price, quantity, unit, shop_name, address, contact_number, stock_status) 
-//       VALUES ?
-//     `;
-
-//         db.query(sql, [values], (err, result) => {
-//             if (err) {
-//                 console.error("Database Insert Error:", err);
-//                 return res.status(500).json({ message: "Database insertion failed." });
-//             }
-//             return res.status(200).json({
-//                 message: `${result.affectedRows} ${category} products uploaded successfully!`
-//             });
-//         });
-//     } catch (err) {
-//         console.error(err);
-//         return res.status(500).json({ message: "Internal server error." });
-//     }
-// });
-
 app.post("/bulk-upload", async (req, res) => {
-    // 1. Remove 'category' from top-level destructuring
     const { owner_id, products } = req.body;
 
-    // 2. Remove '!category' check
     if (!owner_id || !products || products.length === 0) {
         return res.status(400).json({ message: "Invalid payload or empty file." });
     }
@@ -321,10 +228,10 @@ app.post("/bulk-upload", async (req, res) => {
         const values = products.map((item) => [
             owner_id,
             item.product_name || "",
-            item.category || "", // <-- Read category directly from Excel row item
+            item.category || "",
             item.brand_name || "",
             item.description || "",
-            item.image || null, // <-- Optional: Handle image if included in Excel
+            item.image || null,
             item.price || 0,
             item.quantity || 0,
             item.unit || "",
@@ -350,12 +257,11 @@ app.post("/bulk-upload", async (req, res) => {
         return res.status(500).json({ message: "Internal server error." });
     }
 });
+
 //================ View Products =================//
 
 app.get("/view-products/:owner_id", async (req, res) => {
-
     try {
-
         const owner_id = req.params.owner_id;
 
         const sql = `
@@ -366,57 +272,39 @@ app.get("/view-products/:owner_id", async (req, res) => {
         `;
 
         const [products] = await db.query(sql, [owner_id]);
-
         res.json(products);
-
     }
-
     catch (err) {
-
         res.status(500).json({
             message: err.message
         });
-
     }
-
 });
 
-app.listen(5000, () => {
-    console.log('Server is running on port 5000');
-});
 // Delete Product API Route
-
-app.delete("/delete-product/:id", (req, res) => {
+app.delete("/delete-product/:id", async (req, res) => {
     const productId = req.params.id;
-
-    const sql = "DELETE FROM products WHERE product_id = ?";
-    db.query(sql, [productId], (err, result) => {
-        if (err) {
-            console.error("Database error during deletion:", err);
-            return res.status(500).json({ message: "Database Error" });
-        }
+    try {
+        const sql = "DELETE FROM products WHERE product_id = ?";
+        await db.query(sql, [productId]);
         return res.status(200).json({ message: "Product deleted successfully" });
-    });
+    } catch (err) {
+        console.error("Database error during deletion:", err);
+        return res.status(500).json({ message: "Database Error" });
+    }
 });
-
 
 //================ Farmer View All Products =================//
 
 app.get("/products", async (req, res) => {
-
     try {
-
         const page = Number(req.query.page) || 1;
         const limit = Number(req.query.limit) || 5;
-
         const offset = (page - 1) * limit;
 
         const countQuery = "SELECT COUNT(*) AS total FROM products";
-
         const [countResult] = await db.query(countQuery);
-
         const total = countResult[0].total;
-
         const totalPages = Math.ceil(total / limit);
 
         const sql = `
@@ -426,55 +314,46 @@ app.get("/products", async (req, res) => {
         LIMIT ? OFFSET ?
         `;
 
-        const [products] = await db.query(sql, [
-
-            limit,
-            offset
-
-        ]);
+        const [products] = await db.query(sql, [limit, offset]);
 
         res.json({
-
             data: products,
             total,
             page,
             limit,
             totalPages
-
         });
-
     }
-
     catch (err) {
-
         res.status(500).json({
-
             success: false,
             message: err.message
-
         });
-
     }
-
 });
-app.put("/update-product/:id", (req, res) => {
+
+app.put("/update-product/:id", async (req, res) => {
     const productId = req.params.id;
     const { product_name, category, brand_name, price, quantity, stock_status } = req.body;
 
-    const sql = `UPDATE products SET 
-        product_name = ?, 
-        category = ?, 
-        brand_name = ?, 
-        price = ?, 
-        quantity = ?, 
-        stock_status = ? 
-        WHERE product_id = ?`;
+    try {
+        const sql = `UPDATE products SET 
+            product_name = ?, 
+            category = ?, 
+            brand_name = ?, 
+            price = ?, 
+            quantity = ?, 
+            stock_status = ? 
+            WHERE product_id = ?`;
 
-    db.query(sql, [product_name, category, brand_name, price, quantity, stock_status, productId], (err, result) => {
-        if (err) {
-            console.error("Database error during update:", err);
-            return res.status(500).json({ message: "Database Error" });
-        }
+        await db.query(sql, [product_name, category, brand_name, price, quantity, stock_status, productId]);
         return res.status(200).json({ message: "Product updated successfully" });
-    });
+    } catch (err) {
+        console.error("Database error during update:", err);
+        return res.status(500).json({ message: "Database Error" });
+    }
+});
+
+app.listen(5000, () => {
+    console.log('Server is running on port 5000');
 });
