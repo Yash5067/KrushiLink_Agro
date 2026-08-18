@@ -9,19 +9,33 @@ const transporter = require('./mailer');
 const multer = require("multer");
 const path = require("path");
 
-// एकमेव आणि अचूक ग्लोबल डेटाबेस कनेक्शन (Aiven Cloud Ssl Config)
-const db = mysql.createConnection({
+// ============================================================
+// Aiven Cloud MySQL connection — using a POOL instead of a single
+// connection. A single `createConnection` throws an unhandled
+// 'error' event (and crashes the whole Node process, like the
+// ECONNREFUSED / ER_ACCESS_DENIED crashes you were seeing) the
+// moment the socket drops or the cloud DB closes an idle
+// connection. A pool re-establishes connections automatically and
+// keeps the app alive.
+// ============================================================
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    port: Number(process.env.DB_PORT), // env vars are strings — must be a number
     ssl: {
         rejectUnauthorized: false
-    }
+    },
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 }).promise();
 
-console.log("database connected");
+// Quick sanity check on boot (pool doesn't connect immediately like createConnection did)
+db.query("SELECT 1")
+    .then(() => console.log("database connected"))
+    .catch((err) => console.error("Database connection failed:", err.message));
 
 const app = express();
 app.use(cors());
@@ -41,13 +55,26 @@ const upload = multer({
     storage: storage
 });
 
+// Your products.category column is ENUM('Fertilizer','Seed','Pesticide')
+// (singular). Excel bulk-upload sheets and some frontend dropdowns send
+// plural values like "Fertilizers"/"Seeds"/"Pesticides", which MySQL
+// rejects with "Data truncated for column 'category'". Normalize here
+// so any of these are accepted safely.
+function normalizeCategory(value) {
+    const v = (value || "").trim().toLowerCase();
+    if (v.startsWith("fert")) return "Fertilizer";
+    if (v.startsWith("seed")) return "Seed";
+    if (v.startsWith("pest")) return "Pesticide";
+    return value; // fall through unchanged if it doesn't match — will still error clearly if truly invalid
+}
+
 app.post('/register', async (req, res) => {
     try {
         console.log("Request body:", req.body);
 
         const { full_name, name, email, phone, password, role } = req.body;
         const userName = full_name || name;
-        const allowedRoles = ["Farmer", "ShopOwner"];
+        const allowedRoles = ["Farmer", "ShopOwner"]; // matches ENUM('Farmer','ShopOwner') in users table
         const normalizedRole = role?.trim();
 
         if (!userName || !email || !phone || !password || !normalizedRole) {
@@ -145,6 +172,17 @@ app.get("/register", async (req, res) => {
 });
 
 //================ Add Product =================//
+// NOTE: your products table (defaultbdb schema) does NOT have an
+// "image" column. This insert will fail with
+// "Unknown column 'image' in 'field list'" against that schema.
+// Run this once in your Aiven MySQL to match what this code needs:
+//
+//   ALTER TABLE products ADD COLUMN image VARCHAR(255) AFTER description;
+//
+// Also note: your schema's category is ENUM('Fertilizer','Seed','Pesticide')
+// (singular), while some frontend dropdowns send "Fertilizers","Seeds",
+// "Pesticides" (plural) — those inserts will fail too unless you either
+// widen the ENUM or fix the frontend values to match exactly.
 
 app.post("/add-product/:owner_id", upload.single("image"), async (req, res) => {
     try {
@@ -189,7 +227,7 @@ app.post("/add-product/:owner_id", upload.single("image"), async (req, res) => {
         const [result] = await db.query(sql, [
             owner_id,
             product_name,
-            category,
+            normalizeCategory(category),
             brand_name,
             description,
             image,
@@ -228,7 +266,7 @@ app.post("/bulk-upload", async (req, res) => {
         const values = products.map((item) => [
             owner_id,
             item.product_name || "",
-            item.category || "",
+            normalizeCategory(item.category),
             item.brand_name || "",
             item.description || "",
             item.image || null,
@@ -354,6 +392,7 @@ app.put("/update-product/:id", async (req, res) => {
     }
 });
 
-app.listen(5000, () => {
-    console.log('Server is running on port 5000');
+const PORT = process.env.PORT || 5000; // Render assigns its own PORT — hardcoding 5000 breaks live deploys
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
