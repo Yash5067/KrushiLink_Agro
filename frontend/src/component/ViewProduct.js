@@ -38,8 +38,8 @@ function ViewProducts() {
     const loadProducts = async (owner_id) => {
         try {
             const url = owner_id === "all"
-                ? `http://localhost:5000/view-products`
-                : `http://localhost:5000/view-products/${owner_id}`;
+                ? `https://krushilink-agro.onrender.com/view-products`
+                : `https://krushilink-agro.onrender.com/view-products/${owner_id}`;
 
             const res = await axios.get(url);
             setProducts(res.data);
@@ -56,7 +56,7 @@ function ViewProducts() {
         const isConfirm = window.confirm("Are you sure you want to delete this product?");
         if (isConfirm) {
             try {
-                const res = await axios.delete(`http://localhost:5000/delete-product/${productId}`);
+                const res = await axios.delete(`https://krushilink-agro.onrender.com/delete-product/${productId}`);
                 if (res.status === 200) {
                     alert("Product deleted successfully!");
                     setProducts(products.filter((item) => (item._id || item.product_id) !== productId));
@@ -167,7 +167,7 @@ function ViewProducts() {
                                             {/* Product Image */}
                                             <img
                                                 className="product-image"
-                                                src={item.image ? `http://localhost:5000/uploads/${item.image}` : "https://placehold.co/200x120?text=No+Image"}
+                                                src={item.image ? item.image : "https://placehold.co/200x120?text=No+Image"}
                                                 alt={item.product_name}
                                                 onError={(e) => {
                                                     e.target.onerror = null;

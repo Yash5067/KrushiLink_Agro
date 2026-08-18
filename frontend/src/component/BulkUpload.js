@@ -68,7 +68,7 @@ function BulkUpload() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/bulk-upload", {
+      const res = await axios.post("https://krushilink-agro.onrender.com/bulk-upload", {
         owner_id: owner_id,
         products: data,
       });

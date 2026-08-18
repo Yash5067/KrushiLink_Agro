@@ -60,7 +60,7 @@ function Register() {
             return;
         }
 
-        axios.post("http://localhost:5000/register", {
+        axios.post("https://krushilink-agro.onrender.com/register", {
             full_name: name,
             email,
             phone,

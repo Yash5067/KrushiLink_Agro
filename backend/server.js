@@ -40,20 +40,34 @@ db.query("SELECT 1")
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+// app.use("/uploads", express.static("uploads")); //local img storage
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "uploads");
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, "uploads");
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + path.extname(file.originalname));
+//     }
+// });
+
+// const upload = multer({
+//     storage: storage
+// });
+
+
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("./cloudinary");
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "krushilink-products", // folder name in your Cloudinary account
+        allowed_formats: ["jpg", "jpeg", "png", "webp"],
     },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
 });
 
-const upload = multer({
-    storage: storage
-});
+const upload = multer({ storage: storage });
 
 // Your products.category column is ENUM('Fertilizer','Seed','Pesticide')
 // (singular). Excel bulk-upload sheets and some frontend dropdowns send
@@ -201,7 +215,8 @@ app.post("/add-product/:owner_id", upload.single("image"), async (req, res) => {
             contact_number
         } = req.body;
 
-        const image = req.file ? req.file.filename : null;
+        // const image = req.file ? req.file.filename : null;
+        const image = req.file ? req.file.path : null; // Cloudinary gives the full hosted URL here
         const stock_status = Number(quantity) > 0 ? "In Stock" : "Out of Stock";
 
         const sql = `

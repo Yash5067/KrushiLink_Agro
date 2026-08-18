@@ -66,7 +66,7 @@ function AddProduct() {
 
         try {
             const res = await axios.post(
-                `http://localhost:5000/add-product/${owner_id}`,
+                `https://krushilink-agro.onrender.com/add-product/${owner_id}`,
                 formData
             );
             alert(res.data.message || "Product added successfully!");

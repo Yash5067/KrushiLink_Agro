@@ -45,7 +45,7 @@ export default function Login() {
             return;
         }
 
-        axios.post("http://localhost:5000/login", {
+        axios.post("https://krushilink-agro.onrender.com/login", {
             email,
             password
         })

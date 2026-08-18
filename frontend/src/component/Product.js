@@ -35,7 +35,7 @@ function Products() {
         const loadProducts = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5000/products?page=${page}&limit=12`
+                    `https://krushilink-agro.onrender.com/products?page=${page}&limit=12`
                 );
                 setProducts(res.data.data || []);
                 setTotalPages(res.data.totalPages || 1);
@@ -166,11 +166,7 @@ function Products() {
                                 <div className="product-card" key={item.product_id || item._id}>
                                     <div>
                                         <img
-                                            src={
-                                                item.image
-                                                    ? `http://localhost:5000/uploads/${item.image}`
-                                                    : "https://placehold.co/200x120?text=No+Image"
-                                            }
+                                            src={item.image ? item.image : "https://placehold.co/200x120?text=No+Image"}
                                             alt={item.product_name}
                                             className="product-image"
                                             onError={(e) => {

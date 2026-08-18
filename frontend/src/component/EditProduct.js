@@ -57,7 +57,7 @@ function EditProduct() {
             });
             setLoading(false);
         } else if (id) {
-            axios.get(`http://localhost:5000/get-product/${id}`, { timeout: 3000 })
+            axios.get(`https://krushilink-agro.onrender.com/get-product/${id}`, { timeout: 3000 })
                 .then((res) => {
                     let data = res.data;
                     if (Array.isArray(res.data)) data = res.data[0];
@@ -94,7 +94,7 @@ function EditProduct() {
         setIsUpdating(true);
 
         // Direct Ultra-fast Request with 3 Second Max Timeout
-        axios.put(`http://localhost:5000/update-product/${id}`, product, { timeout: 3000 })
+        axios.put(`https://krushilink-agro.onrender.com/update-product/${id}`, product, { timeout: 3000 })
             .then((res) => {
                 // 1 Second Delay to Ensure User Sees the Alert
                 alert("Your Product Has Been Successfully Updated!");
@@ -103,7 +103,7 @@ function EditProduct() {
             .catch((err) => {
                 console.error("Fast update failed, trying backup route...", err);
                 // Fallback direct request
-                axios.put(`http://localhost:5000/edit-product/${id}`, product, { timeout: 3000 })
+                axios.put(`https://krushilink-agro.onrender.com/edit-product/${id}`, product, { timeout: 3000 })
                     .then(() => {
                         alert("Your Product Has Been Successfully Updated!");
                         navigate("/view-products");
