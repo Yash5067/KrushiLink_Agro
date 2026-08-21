@@ -37,9 +37,23 @@ db.query("SELECT 1")
     .then(() => console.log("database connected"))
     .catch((err) => console.error("Database connection failed:", err.message));
 
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
+
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: "https://krushilinkagro.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
+
 // app.use("/uploads", express.static("uploads")); //local img storage
 
 // const storage = multer.diskStorage({
